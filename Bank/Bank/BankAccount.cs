@@ -2,7 +2,9 @@
 
 namespace Bank;
 
-internal class BankAccount
+// BankAccount - потомок класса object =>  следовательно можно переопределить
+// виртуальные методы, находящиеся в object
+public class BankAccount
 { 
     static private int s_accountNuberSeed = 1000000000;
     public string Number { get; }
@@ -57,6 +59,7 @@ internal class BankAccount
         var withdrawal = new Transaction(-amount, date, note);
         _allTransactions.Add(withdrawal);
     }
+
     public string GetAccountHistory()
     {
         var report = new StringBuilder();
@@ -71,6 +74,26 @@ internal class BankAccount
         }
         return report.ToString();
     }
+    // Ключевое слово virtual позволяет в дочернем классе
+    // предоставить другую реализацию
+    // метода PerformMonthAndTransactions
+    public virtual void PerformMonthAndTransactions()
+    {
 
+    }
+    // переопределяем метод, который унаследовали от object
+    // этот метод должен возвращать строку с состоянием объекта
+    //public override string ToString()
+    //{
+    //    return $"Type: {GetType().Name}\t" +
+    //        $"Owner: {Owner}\t" +
+    //        $"Number of account:{Number}\t" +
+    //        $"Balance: {Balance}";
+    //}
 
+    public override string ToString()
+        => $"Type: {GetType().Name}\t" +
+            $"Owner: {Owner}\t" +
+            $"Number of account:{Number}\t" +
+            $"Balance: {Balance}";
 }
