@@ -26,7 +26,7 @@
                 Console.WriteLine(e.Message);
             }
 
-            InterestEarningAccount interest = new InterestEarningAccount("Yana", 1000);
+            InterestEarningAccount interest = new InterestEarningAccount("Yanaa", 1000);
             interest.PerformMonthAndTransactions();
 
             Console.WriteLine(interest.GetAccountHistory());
