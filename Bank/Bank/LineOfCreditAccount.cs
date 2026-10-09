@@ -1,27 +1,24 @@
-﻿namespace Bank;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-public class LineOfCreditAccount : BankAccount
+namespace Bank
 {
-    public LineOfCreditAccount(string name, decimal initialBalance, decimal creditLimit)
-        : base(name, initialBalance, -creditLimit)
+    /// <summary>
+    /// Представляет кредитный банковский счёт с установленным лимитом.
+    /// </summary>
+    public class LineOfCreditAccount : BankAccount
     {
-
-    }
-
-    public override void PerformMonthAndTransactions()
-    {
-        if (Balance < 0)
+        /// <summary>
+        /// Создаёт кредитный счёт с заданным кредитным лимитом.
+        /// </summary>
+        /// <param name="name">Имя владельца счёта.</param>
+        /// <param name="initialBalance">Начальный баланс счёта.</param>
+        /// <param name="creditLimit">Максимально допустимая сумма задолженности.</param>
+        public LineOfCreditAccount(string name, decimal initialBalance, decimal creditLimit)
+            : base(name, initialBalance, -creditLimit)
         {
-            decimal interest = -Balance * 0.07m;
-            MakeWithdrawal(interest, DateTime.UtcNow, "Charge monthly interest");
+
         }
     }
-
-    protected override Transaction? CheckWithdrawalLimit(bool isOverdrawn)
-        => isOverdrawn ? new Transaction(-20, DateTime.UtcNow, "apply overdraft") : default;
-
-    //protected override Transaction? CheckWithdrawalLimit(bool isOverdrawn)
-    //{
-    //    return isOverdrawn ? new Transaction(-20, DateTime.UtcNow, "apply overdraft") : default;
-    //}
 }
