@@ -81,6 +81,8 @@
             Console.WriteLine("VIP: " + vip.Balance);
 
             Console.WriteLine(vip.GetAccountHistory());
+
+            AuditLog.ShowLog();
         }
     }
 }

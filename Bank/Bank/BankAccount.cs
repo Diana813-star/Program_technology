@@ -125,6 +125,8 @@ public class BankAccount
 
         _allTransactions.Add(withdrawal);
 
+        AuditLog.WriteLog(Number,"Withdrawal",amount,date);
+
         if (Status == AccountStatus.VIP)
         {
             decimal cashback = amount * 0.05m;
