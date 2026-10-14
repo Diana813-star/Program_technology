@@ -60,6 +60,27 @@
             lineOfCredit.MakeWithdrawal(400m, DateTime.UtcNow, "credit");
 
             Console.WriteLine(lineOfCredit.GetAccountHistory());
+
+            BankAccount regular = new BankAccount("Ivan", 20000m);
+            regular.Status = AccountStatus.Regular;
+
+            BankAccount premium = new BankAccount("Anna", 20000m);
+            premium.Status = AccountStatus.Premium;
+
+            BankAccount vip = new BankAccount("Maria", 20000m);
+            vip.Status = AccountStatus.VIP;
+
+            regular.PerformMonthAndTransactions();
+            premium.PerformMonthAndTransactions();
+            vip.PerformMonthAndTransactions();
+
+            vip.MakeWithdrawal(1000m, DateTime.UtcNow, "Purchase");
+
+            Console.WriteLine("Regular: " + regular.Balance);
+            Console.WriteLine("Premium: " + premium.Balance);
+            Console.WriteLine("VIP: " + vip.Balance);
+
+            Console.WriteLine(vip.GetAccountHistory());
         }
     }
 }

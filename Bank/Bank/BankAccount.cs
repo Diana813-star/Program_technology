@@ -3,12 +3,26 @@
 namespace Bank;
 
 /// <summary>
+/// Определяет статус банковского счёта, влияющий на комиссии, тарифы и бонусы.
+/// </summary>
+public enum AccountStatus
+{
+    Regular,
+    Premium,
+    VIP
+}
+
+/// <summary>
 /// Представляет банковский счёт с поддержкой финансовых операций.
 /// </summary>
 public class BankAccount
 {
     private readonly decimal _minimumBalance;
     static private int s_accountNuberSeed = 1000000000;
+    /// <summary>
+    /// Возвращает или задаёт тарифный статус счёта, определяющий условия обслуживания и бонусы.
+    /// </summary>
+    public AccountStatus Status { get; set; } = AccountStatus.Regular;
 
     /// <summary>
     /// Возвращает уникальный номер банковского счёта.
@@ -110,6 +124,13 @@ public class BankAccount
         Transaction? withdrawal = new(-amount, date, note);
 
         _allTransactions.Add(withdrawal);
+
+        if (Status == AccountStatus.VIP)
+        {
+            decimal cashback = amount * 0.05m;
+
+            MakeDeposit(cashback, DateTime.UtcNow, "VIP cashback");
+        }
         if (overdraftTransaction is not null)
             _allTransactions.Add(overdraftTransaction);
     }
@@ -158,5 +179,32 @@ public class BankAccount
     /// </summary>
     public virtual void PerformMonthAndTransactions()
     {
+        switch (Status)
+        {
+            case AccountStatus.Regular:
+                MakeWithdrawal(50m, DateTime.UtcNow,
+                    "Monthly service fee");
+                break;
+
+            case AccountStatus.Premium:
+                if (Balance > 10000m)
+                {
+                    decimal interest = (Balance - 10000m) * 0.01m;
+
+                    MakeDeposit(interest, DateTime.UtcNow,
+                        "Premium interest");
+                }
+                break;
+
+            case AccountStatus.VIP:
+                if (Balance > 10000m)
+                {
+                    decimal interest = (Balance - 10000m) * 0.03m;
+
+                    MakeDeposit(interest, DateTime.UtcNow,
+                        "VIP interest");
+                }
+                break;
+        }
     }
 }
