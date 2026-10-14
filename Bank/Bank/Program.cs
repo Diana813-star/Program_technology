@@ -83,6 +83,29 @@
             Console.WriteLine(vip.GetAccountHistory());
 
             AuditLog.ShowLog();
+
+
+            BankAccount accountA = new BankAccount("Ivan", 5000m);
+            BankAccount accountB = new BankAccount("Anna", 1000m);
+
+            Console.WriteLine("До перевода:");
+            Console.WriteLine("Счёт A: " + accountA.Balance);
+            Console.WriteLine("Счёт B: " + accountB.Balance);
+
+            BankTransfer.Transfer(accountA, accountB, 500m);
+
+            Console.WriteLine("После перевода:");
+            Console.WriteLine("Счёт A: " + accountA.Balance);
+            Console.WriteLine("Счёт B: " + accountB.Balance);
+
+            Console.WriteLine("История счёта A:");
+            Console.WriteLine(accountA.GetAccountHistory());
+
+            Console.WriteLine("История счёта B:");
+            Console.WriteLine(accountB.GetAccountHistory());
+
+            AuditLog.ShowLog();
+
         }
     }
 }
