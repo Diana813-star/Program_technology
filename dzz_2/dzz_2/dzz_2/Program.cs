@@ -17,7 +17,7 @@ namespace dzz_2
         {
             List<Character> characters = new List<Character>
         {
-            new Warrior(1, "Conana", 200, 80),
+            new Warrior(1, "Conan", 200, 80),
             new Mage(2, "Merlin", 80, 150),
             new Archer(3, "Robin", 120, 10)
         };
