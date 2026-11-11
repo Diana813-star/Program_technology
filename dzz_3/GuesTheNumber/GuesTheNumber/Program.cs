@@ -6,12 +6,6 @@ class Program
     {
         GameSettings settings = new GameSettings();
 
-        Console.WriteLine("Сыграем в игру УГАДАЙ ЧИСЛО!");
-        Console.WriteLine("Выбери сложность:");
-        Console.WriteLine("1-Легкая");
-        Console.WriteLine("2-Средняя");
-        Console.WriteLine("3-Сложная");
-
         settings.OptionDifficulty();
 
         Random random = new Random();

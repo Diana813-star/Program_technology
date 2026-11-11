@@ -5,6 +5,13 @@
     public int MaxAttempts ;
     public void OptionDifficulty()
     {
+        Console.WriteLine("Сыграем в игру УГАДАЙ ЧИСЛО!");
+        Console.WriteLine("Выбери сложность:");
+        Console.WriteLine("1-Легкая");
+        Console.WriteLine("2-Средняя");
+        Console.WriteLine("3-Сложная");
+        Console.WriteLine("4-Настрой сам");
+
         string option = Console.ReadLine();
 
         if (option == "1")
@@ -21,6 +28,14 @@
         {
             MaxNumber = 250;
             MaxAttempts = 8;
+        }
+        else if (option == "4")
+        {        
+            Console.WriteLine("Конечное число:");
+            MaxNumber = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Количество попыток:");
+            MaxAttempts = Convert.ToInt32(Console.ReadLine());
         }
         else
         {
