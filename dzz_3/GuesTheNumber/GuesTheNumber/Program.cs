@@ -21,6 +21,8 @@ class Program
         int userInp = 0;
         int count = 0;
 
+        GameHints hints = new GameHints();
+
         Console.WriteLine("Загадал число от "+ settings.MinNumber + " до " + settings.MaxNumber);
 
         while (userInp != number && count < settings.MaxAttempts)
@@ -39,15 +41,16 @@ class Program
             if (userInp < number)
             {
                 Console.WriteLine("Загаданное число больше!");
+                hints.ShowHint(userInp, number);
             }
             else if (userInp > number)
             {
                 Console.WriteLine("Загаданное число меньше!");
+                hints.ShowHint(userInp, number);
             }
             else
             {
                 Console.WriteLine("Поздравляю! Ты угадал!");
-                Console.WriteLine("Количество попыток: " + count);
             }
         }
 
