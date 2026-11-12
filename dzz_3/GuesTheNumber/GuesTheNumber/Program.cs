@@ -10,6 +10,8 @@ class Program
 
         AssociationNumber association = new AssociationNumber();
 
+        GameHistory history = new GameHistory();
+
         settings.OptionDifficulty();
 
         Random random = new Random();
@@ -61,6 +63,10 @@ class Program
         {
             state.LossGame(number);
         }
+
+        bool win = userInp == number;
+        history.SaveResult(number, win);
+
 
         state.GameResult();
     }
