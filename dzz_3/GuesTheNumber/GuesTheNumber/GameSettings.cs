@@ -17,17 +17,17 @@
         if (option == "1")
         {
             MaxNumber = 80;
-            MaxAttempts = 17;
+            MaxAttempts = 7;
         }
         else if (option == "2")
         {
             MaxNumber = 150;
-            MaxAttempts = 12;
+            MaxAttempts = 7;
         }
         else if (option == "3")
         {
             MaxNumber = 250;
-            MaxAttempts = 8;
+            MaxAttempts = 5;
         }
         else if (option == "4")
         {        
@@ -42,7 +42,7 @@
             Console.WriteLine("Неправильный выбор");
             Console.WriteLine("Выбрал средний уровень сложности");
             MaxNumber = 150;
-            MaxAttempts = 12;
+            MaxAttempts = 7;
 
         }
     }

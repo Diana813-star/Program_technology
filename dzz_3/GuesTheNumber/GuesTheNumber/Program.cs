@@ -8,6 +8,8 @@ class Program
 
         GameState state = new GameState();
 
+        AssociationNumber association = new AssociationNumber();
+
         settings.OptionDifficulty();
 
         Random random = new Random();
@@ -41,15 +43,17 @@ class Program
             {
                 Console.WriteLine("Загаданное число больше!");
                 hints.ShowHint(userInp, number);
+                association.Association(number);
             }
             else if (userInp > number)
             {
                 Console.WriteLine("Загаданное число меньше!");
                 hints.ShowHint(userInp, number);
+                association.Association(number);
             }
             else
             {
-                state.WinGame();
+                state.WinGame(count);
             }
         }
 

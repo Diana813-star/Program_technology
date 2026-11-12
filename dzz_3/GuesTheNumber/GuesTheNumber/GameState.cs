@@ -7,9 +7,10 @@ public class GameState
     {
         Console.WriteLine("Игра началась");
     }
-    public void WinGame()
+    public void WinGame(int count)
     {
         Console.WriteLine("Поздравляю! Ты угадал число!");
+        Console.WriteLine("Количество попыток: " + count);
     }
     public void LossGame(int number)
     {
