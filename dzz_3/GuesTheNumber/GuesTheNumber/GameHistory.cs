@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-public class GameHistory
+public class GameHistory:IGameHistory
 {
     public void SaveResult(int number, bool win)
     {

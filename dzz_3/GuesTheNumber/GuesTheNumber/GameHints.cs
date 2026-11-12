@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class GameHints
+public class GameHints:IGameHints
 {
     public void ShowHint(int userInp, int number)
     {

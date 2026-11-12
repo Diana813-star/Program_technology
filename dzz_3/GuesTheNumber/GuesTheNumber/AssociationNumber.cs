@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class AssociationNumber
+public class AssociationNumber: IAssociationNumber
 {
     public void Association(int number)
     {

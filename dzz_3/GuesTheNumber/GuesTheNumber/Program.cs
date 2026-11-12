@@ -4,70 +4,20 @@ class Program
 {
     static void Main(string[] args)
     {
-        GameSettings settings = new GameSettings();
+        SettingsMenu menu = new SettingsMenu();
 
-        GameState state = new GameState();
+        GameSettings settings = menu.OptionDifficulty();
 
-        AssociationNumber association = new AssociationNumber();
+        IGameHints hints = new GameHints();
 
-        GameHistory history = new GameHistory();
+        IAssociationNumber association = new AssociationNumber();
 
-        settings.OptionDifficulty();
+        IGameHistory history = new GameHistory();
 
-        Random random = new Random();
+        IGameState state = new GameState();
 
-        int number = random.Next(settings.MinNumber, settings.MaxNumber + 1);
+        Game game = new Game(settings, hints, association, history, state);
 
-        int userInp = 0;
-        int count = 0;
-
-        GameHints hints = new GameHints();
-
-        state.StartGame();
-
-        Console.WriteLine("Загадал число от "+ settings.MinNumber + " до " + settings.MaxNumber);
-
-
-        while (userInp != number && count < settings.MaxAttempts)
-        {
-            Console.WriteLine("Введите число: ");
-            string text = Console.ReadLine();
-
-            if (!int.TryParse(text, out userInp))
-            {
-                Console.WriteLine("Введите число правильно!");
-                continue;
-            }
-
-            count++;
-
-            if (userInp < number)
-            {
-                Console.WriteLine("Загаданное число больше!");
-                hints.ShowHint(userInp, number);
-                association.Association(number);
-            }
-            else if (userInp > number)
-            {
-                Console.WriteLine("Загаданное число меньше!");
-                hints.ShowHint(userInp, number);
-                association.Association(number);
-            }
-            else
-            {
-                state.WinGame(count);
-            }
-        }
-
-        if (userInp != number)
-        {
-            state.LossGame(number);
-        }
-
-        bool win = userInp == number;
-        history.SaveResult(number, win);
-
-
-        state.GameResult();
+        game.Start();
     }
 }
