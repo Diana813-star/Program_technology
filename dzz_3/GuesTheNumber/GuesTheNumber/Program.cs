@@ -6,6 +6,8 @@ class Program
     {
         GameSettings settings = new GameSettings();
 
+        GameState state = new GameState();
+
         settings.OptionDifficulty();
 
         Random random = new Random();
@@ -17,7 +19,10 @@ class Program
 
         GameHints hints = new GameHints();
 
+        state.StartGame();
+
         Console.WriteLine("Загадал число от "+ settings.MinNumber + " до " + settings.MaxNumber);
+
 
         while (userInp != number && count < settings.MaxAttempts)
         {
@@ -44,16 +49,15 @@ class Program
             }
             else
             {
-                Console.WriteLine("Поздравляю! Ты угадал!");
+                state.WinGame();
             }
         }
 
         if (userInp != number)
         {
-            Console.WriteLine("Попытки закончились");
-            Console.WriteLine("Правильный ответ: " + number);
+            state.LossGame(number);
         }
-        
-        Console.WriteLine("Игра закончена");
+
+        state.GameResult();
     }
 }
