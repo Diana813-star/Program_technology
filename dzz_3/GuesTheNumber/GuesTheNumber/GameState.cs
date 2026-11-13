@@ -1,7 +1,7 @@
 ﻿using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-public class GameState:IGameState
+public class GameState : IGameState
 {
     public void StartGame()
     {

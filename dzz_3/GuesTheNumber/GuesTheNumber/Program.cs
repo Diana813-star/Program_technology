@@ -19,5 +19,16 @@ class Program
         Game game = new Game(settings, hints, association, history, state);
 
         game.Start();
+
+        game.GameStart += state.StartGame;
+
+        game.PlayerWin += state.WinGame;
+
+        game.PlayerLoss += state.LossGame;
+
+        game.GameFinish += state.GameResult;
+
+        game.Start();
     }
+
 }

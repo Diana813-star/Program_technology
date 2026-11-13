@@ -2,6 +2,12 @@
 
 public class Game
 {
+    public event Action? GameStart;
+    public event Action<int>? PlayerWin;
+    public event Action<int>? PlayerLoss;
+    public event Action? GameFinish;
+
+
     private GameSettings settings;
     private IGameHints hints;
     private IAssociationNumber association;
@@ -29,7 +35,7 @@ public class Game
         int userInp = 0;
         int count = 0;
 
-        state.StartGame();
+        GameStart?.Invoke();
 
         Console.WriteLine("Загадал число от " +
             settings.MinNumber + " до " + settings.MaxNumber);
@@ -61,7 +67,7 @@ public class Game
             }
             else
             {
-                state.WinGame(count);
+                PlayerWin?.Invoke(count);
             }
         }
 
@@ -69,11 +75,11 @@ public class Game
 
         if (!win)
         {
-            state.LossGame(number);
+            PlayerLoss?.Invoke(number);
         }
 
         history.SaveResult(number, win);
 
-        state.GameResult();
+        GameFinish?.Invoke();
     }
 }
