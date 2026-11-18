@@ -7,19 +7,14 @@ public class Game
     public event Action<int>? PlayerLoss;
     public event Action? GameFinish;
 
-
     private GameSettings settings;
-    private IGameHints hints;
     private IAssociationNumber association;
     private IGameHistory history;
     private IGameState state;
 
-    public Game(GameSettings settings, IGameHints hints,
-        IAssociationNumber association, IGameHistory history,
-        IGameState state)
+    public Game(GameSettings settings, IAssociationNumber association, IGameHistory history, IGameState state)
     {
         this.settings = settings;
-        this.hints = hints;
         this.association = association;
         this.history = history;
         this.state = state;
@@ -56,13 +51,11 @@ public class Game
             if (userInp < number)
             {
                 Console.WriteLine("Загаданное число больше!");
-                hints.ShowHint(userInp, number);
                 association.Association(number);
             }
             else if (userInp > number)
             {
                 Console.WriteLine("Загаданное число меньше!");
-                hints.ShowHint(userInp, number);
                 association.Association(number);
             }
             else
